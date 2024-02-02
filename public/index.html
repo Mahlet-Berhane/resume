@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Resume - Start Bootstrap Theme</title>
+        <link rel="icon" type="image/x-icon" href="favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="styles.css" rel="stylesheet" />
+
+            <title>Form with Validation</title>
+            <script>
+                // function validateForm() {
+                //     var name = document.forms["myForm"]["name"].value;
+                //     var email = document.forms["myForm"]["email"].value;
+                //     var phone = document.forms["myForm"]["phone"].value;
+                //     var comment = document.forms["myForm"]["comment"].value;
+                    
+                //     var nameRegex = /^[a-zA-Z0-9._-]{2,14}$/;
+                //     var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+                //     var phoneRegex = /^[0-9]{10}$/;
+                //     var commentRegex = /^[a-zA-Z0-9._-]{0,50}$/;
+        
+                //     if (!nameRegex.test(name)) {
+                //         alert("Invalid name format");
+                //         return false;
+                //     }
+                    
+                //     if (!emailRegex.test(email)) {
+                //         alert("Invalid email format");
+                //         return false;
+                //     }
+        
+                //     // if (!phoneRegex.test(phone)) {
+                //     //     alert("Invalid phone number format");
+                //     //     return false;
+                //     // }
+                    
+                //     return true;
+                // }
+            
+            function submitForm() {
+                
+                var guestNameRegex = /^[a-zA-Z0-9._-]{2,14}$/;
+                var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+                if (!nameRegex.test(name)) {
+                    alert("Invalid name format");
+                    return false;
+                }
+
+                if (!emailRegex.test(email)) {
+                    alert("Invalid email format");
+                    return false;
+                }
+
+            const formData = {
+                messageTitle: document.getElementById('messageTitle').value,
+                message: document.getElementById('message').value,
+                email: document.getElementById('email').value,
+                guestName: document.getElementById('guestName').value,
+                phone: document.getElementById('phone').value || null, // Phone is optional
+            };
+            
+            //API_GATEWAY_ENDPOINT = https://l44pf78ao4.execute-api.us-east-1.amazonaws.com/prod
+
+            fetch('https://l44pf78ao4.execute-api.us-east-1.amazonaws.com/prod/SaveContactMessage', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById('responseMessage').textContent = 'Message sent successfully!';
+                document.getElementById('responseMessage').style.color = 'green';
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                document.getElementById('responseMessage').textContent = 'Error sending message.'+ error;
+                document.getElementById('responseMessage').style.color = 'red';
+            });
+
+            // Optionally reset the form here if desired
+            document.getElementById('contactForm').reset();
+        }
+            </script>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                }
+                .technology-list {
+                    list-style-type: none;
+                    padding: 0;
+                }
+                .technology-list li {
+                    margin-bottom: 10px;
+                    align-items: center;
+                    display: flex;
+                }
+                .technology-list img {
+                    width: 50px;
+                    height: 50px;
+                    margin-right: 10px;
+                    border-radius: 5px;
+                }
+                .category {
+                    font-weight: bold;
+                    margin-top: 20px;
+                }
+            </style>
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">
+                <span class="d-block d-lg-none">Mahlet Berhane</span>
+                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="profile.jpg" alt="..." /></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#introduction">Introduction</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Education</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#blog">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+        <!-- Page Content-->
+        <!-- Introduction-->
+        <div class="container-fluid p-0">
+            <section class="resume-section" id="introduction">
+                <div class="resume-section-content">
+                    <h1 class="mb-0">
+                        Mahlet
+                        <span class="text-primary">Berhane</span>
+                    </h1>
+                    <div class="subheading mb-5">
+                        5620 S Colony blvd Street · The Colony, TX 75056 · (641) 819-165 ·
+                        <a href="mailto:name@email.com">mahlet.berhane2@gmail.com</a>
+                    </div>
+                    <p class="lead mb-5">As a software engineer with a zest for lifelong learning, I've thrived on challenges, collaborated with multicultural teams, and showcased my energy, talent, and quick learning abilities to deliver innovative solutions. </p>
+                    <div class="social-icons">
+                        <a class="social-icon" href="https://www.linkedin.com/feed/"><i class="fab fa-linkedin-in"></i></a> 
+                        <a class="social-icon" href="#!"><i class="fab fa-github"></i></a>
+                        <a class="social-icon" href="#!"><i class="fab fa-twitter"></i></a>
+                        <a class="social-icon" href="#!"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+            </section>
+            <!-- About-->
+            <section class="resume-section" id="about">
+                <div class="resume-section-content">
+                    <h1 class="mb-0">
+                        Mahlet
+                        <span class="text-primary">Berhane</span>
+                    </h1>
+                    <div class="subheading mb-5"></div>
+                    <p class="lead mb-5">With over seven years in the IT industry and holding an AWS certification, I've dedicated myself to the art of software engineering, focusing on developing applications that are both innovative and aligned with project goals. My journey is underpinned by a passion for continuous learning and the ability to swiftly adapt and excel in multicultural team environments, ensuring the delivery of quality solutions.</p>
+                    <p class="lead mb-5">In my current role, I leverage my technical expertise to contribute to projects that demand a deep understanding of both technical specifications and the broader vision they serve. This approach has enabled me to effectively support project objectives and drive advancements in technology.</p>
+                    <p class="lead mb-5">I approach each project with humility, enthusiasm, and a collaborative spirit, always looking for opportunities to grow and help my team overcome challenges. My goal is to make a meaningful impact through my work, continuously seeking ways to improve and innovate.</p>
+
+                </div>
+            </section>
+            <hr class="m-0" />
+             <!-- Skills-->
+            <section class="resume-section" id="skills">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">Skills</h1>
+                    <div class="category">Core Languages and Frameworks</div> 
+                    <ul class="list-inline dev-icons">
+                        <li class="list-inline-item"><i class="fab fa-java"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-html5"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-css3-alt"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-js-square"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-node-js"></i></li>
+                        <li class="list-inline-item"><i class="fas fa-seedling"></i></li>
+                        <li class="list-inline-item"><i class="fas fa-leaf"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-node-js"></i></li>
+                    </ul>
+
+                    <div class="category">API Development and Testing Tools</div>
+                    <ul class="list-inline dev-icons">
+                        <li class="list-inline-item"><i class="fas fa-mail-bulk"></i></li>
+                        <li class="list-inline-item"><i class="fas fa-key"></i></li>
+                        <li class="list-inline-item"><i class="fas fa-vial"></i></li>
+                        <li class="list-inline-item"><i class="fas fa-user-secret"></i></li>
+                        <li class="list-inline-item"><i class="fas fa-carrot"></i></li>
+                    </ul>      
+                
+                    <div class="category">Database and Data Format</div>
+                    <ul class="list-inline dev-icons">
+                        <li class="list-inline-item"><i class="fas fa-database"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-js-square"></i></li>
+                    
+                    </ul>           
+                    
+                    <div class="category">DevOps and Cloud Technologies</div>
+                    <ul class="list-inline dev-icons">
+                        <li class="list-inline-item"><i class="fab fa-aws"></i></li>
+                        <li class="list-inline-item"><i class="fas fa-infinity"></i></li>
+                        <li class="list-inline-item"><i class="fas fa-cloud-upload-alt"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-docker"></i></li>
+                    </ul>
+                
+                    <div class="category">Security and Configuration</div>
+                    <ul class="list-inline dev-icons">
+                        <li class="list-inline-item"><i class="fas fa-shield-alt"></i></li>
+                    </ul>
+                
+                    <div class="category">Architectural Styles</div>
+                    <ul class="list-inline dev-icons">
+                        <li class="list-inline-item"><i class="fas fa-network-wired"></i></li>
+                    </ul>              
+                 
+
+                </div>
+            </section>
+            <!-- Experience-->
+            <section class="resume-section" id="experience">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">Experience</h2>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">Software Engineer</h3>
+                            <div class="subheading mb-3">JPMorgan Chase & Co.</div>
+                            <p>Deliver high-quality software solutions that enhance the efficiency, security, and scalability of applications and platforms. Collaborate to streamline the development process, prepare project artifacts, and create staff training.</p>
+                        </div>
+                        <div class="flex-shrink-0"><span class="text-primary">Sep 2022 - Present</span></div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0"> Software Developer</h3>
+                            <div class="subheading mb-3">Draco Systems</div>
+                            <p>Responsible for new component development, collaborated with peer developers to deliver design, development, programming, testing, documentation, and, implementation of Java Web Applications using Java, Spring Boot, Hibernate, Node js, Express</p>
+                        </div>
+                        <div class="flex-shrink-0"><span class="text-primary">May 2018 - Mar 2021</span></div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">System Analyst and Project Manager</h3>
+                            <div class="subheading mb-3">Ledant Printing and Advertising plc</div>
+                            <p>Managed printing and advertising projects for businesses and consulted client businesses on software requirements, analysis, and specifications.</p>
+                        </div>
+                        <div class="flex-shrink-0"><span class="text-primary">Feb 2016 - Apr 2018</span></div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">Software Developer</h3>
+                            <div class="subheading mb-3">Mummet Trading PLC </div>
+                            <p>Responsible for new software development. Analyzed business requirements and technical specifications to streamline the development and implementation of software applications using C#, ASP.NET, MS SQL, MS Visual Studio 2008, Dev Express Libraries.</p>
+                        </div>
+                        <div class="flex-shrink-0"><span class="text-primary">Oct 2013 - Dec 2014</span></div>
+                    </div>
+                </div>
+            </section>
+            <hr class="m-0" />
+            <!-- Education-->
+            <section class="resume-section" id="education">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">Education</h2>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">Maharishi International University</h3>
+                            <div class="subheading mb-3">Master of Science, in Computer Science</div>
+                        </div>
+                        <div class="flex-shrink-0"><span class="text-primary">Jul 2021 - Apr 2024</span></div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">Addis Ababa University</h3>
+                            <div class="subheading mb-3">Master of Arts(M.A.), in Project Management</div>                           
+                        </div>
+                        <div class="flex-shrink-0"><span class="text-primary">Oct 2014 - Jul2016</span></div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">HiLCoE School of Computer Science and Technology</h3> 
+                            <div class="subheading mb-3">Bachelor of Science (B.Sc.), Computer Science Bachelor of Science (B.Sc.),</div>                           
+                        </div>
+                        <div class="flex-shrink-0"><span class="text-primary">2009 - 2012</span></div>
+                    </div>
+                </div>
+            </section>
+            <hr class="m-0" /> 
+            <!-- blog-->
+            <section class="resume-section" id="blog">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">Blog</h2>
+                    <p></p>
+                    
+                    <main>
+                        <section>
+                            <article>
+                                <h3 class="mb-0">How I Implemented My Cloud Computing School Project</h3>
+                                <p class="post-meta">Posted on <time datetime="2024-02-01">February 1, 2024</time> by Mahlet G. Berhane</p>
+                                <p>In my latest blog post, I dive into an exciting journey: implementing a cloud computing project for my school. This project was more than just an academic exercise; it was a path to building a personal website that not only impresses recruiters but also sets me apart from other job candidates.</p>
+                                <p>Throughout this project, I gained invaluable hands-on experience with cutting-edge cloud technologies, which I am confident will be a shining point in job interviews and my future career.</p>
+                                <p>The primary goals were ambitious: to construct a fault-tolerant, highly scalable, and production-ready API on the cloud, coupled with a front-end application that interacts seamlessly with this API. This endeavor provided a comprehensive understanding of how back-end and front-end development come together to create a fully functional application.</p>
+                                <p>The tasks involved were multifaceted. I embarked on building the front end using HTML5, CSS3, and js, deploying it on S3 with CloudFront. The back-end API was an adventure in serverless services, utilizing tools such as Lambda, DynamoDB, API Gateway, and more. A unique aspect was acquiring and configuring a domain name, where I explored the nuances between paid and free domains and integrated SSL certificates for security.</p>
+                                <p>Finally, the project was not just about technical implementation but also creativity. I brainstormed and realized an intriguing idea for the website, a process I’ll be sharing in this blog. Join me as I recount how this project came to life, from conception to execution, and the plethora of learnings along the way.</p>
+                                <a href="post1.html">Read more...</a> 
+                            </article>                
+                            <!-- Add more articles -->
+                        </section>
+                    </main>
+                
+                    <footer>
+                        <p>© 2024 My Blog</p>
+                        <p>Follow us on <a href="https://www.linkedin.com/feed/">Social Media</a></p>
+                    </footer>
+                </div>   
+            </section>
+            <hr class="m-0" />           
+            <!-- Contact-->
+            <section class="resume-section" id="contact">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">Contact Me</h2>
+                    <p>I would love to hear from you</p>
+                    <!-- <form name="myForm" action="http://localhost:3000/submit-form" method="POST" onsubmit="return validateForm()">
+                        <label for="name">Name:</label><br>
+                        <input type="text" id="name" name="name" required><br><br>
+                        <label for="email">Email:</label><br>
+                        <input type="email" id="email" name="email" required><br><br>
+                        <label for="phone">Phone Number:</label><br>
+                        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}"><br><br>
+                        <label for="comment">Comment:</label><br>
+                        <textarea name="comment" id="comment" placeholder="Type your comments" rows="4" required></textarea></p>
+                        <input type="submit" value="Submit">
+                    </form> -->
+                    <form id="contactForm">
+                        <div>
+                            <label for="messageTitle">Message Title:</label><br>
+                            <input type="text" id="messageTitle" name="messageTitle" required><br><br>
+                        </div>
+                        <div>
+                            <label for="message">Message:</label><br>
+                            <textarea id="message" name="message" rows="4" required></textarea><br><br>
+                        </div>
+                        <div>
+                            <label for="email">Email:</label><br>
+                            <input type="email" id="email" name="email" required><br><br>
+                        </div>
+                        <div>
+                            <label for="guestName">Guest Name:</label><br>
+                            <input type="text" id="guestName" name="guestName" required><br><br>
+                        </div>
+                        <div>
+                            <label for="phone">Phone (Optional):</label><br>
+                            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}"><br><br>
+                        </div>
+                        <button type="button" onclick="submitForm()">Send Message</button>
+                    </form>
+                    <p id="responseMessage"></p>
+                </div>   
+            </section>
+            <hr class="m-0" />
+        </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="scripts.js"></script>
+    </body>
+</html>
