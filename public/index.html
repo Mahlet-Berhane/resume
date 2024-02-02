@@ -49,6 +49,8 @@
                 // }
             
             function submitForm() {
+                var name = document.forms["myForm"]["name"].value;
+                var email = document.forms["myForm"]["email"].value;
                 
                 var guestNameRegex = /^[a-zA-Z0-9._-]{2,14}$/;
                 var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -296,7 +298,7 @@
                     <div class="d-flex flex-column flex-md-row justify-content-between">
                         <div class="flex-grow-1">
                             <h3 class="mb-0">HiLCoE School of Computer Science and Technology</h3> 
-                            <div class="subheading mb-3">Bachelor of Science (B.Sc.), Computer Science Bachelor of Science (B.Sc.),</div>                           
+                            <div class="subheading mb-3">Bachelor of Science (B.Sc.), Computer Science</div>                           
                         </div>
                         <div class="flex-shrink-0"><span class="text-primary">2009 - 2012</span></div>
                     </div>
