@@ -17,47 +17,18 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="styles.css" rel="stylesheet" />
 
-            <title>Form with Validation</title>
+            <!-- <title>Form with Validation</title> -->
             <script>
-                // function validateForm() {
-                //     var name = document.forms["myForm"]["name"].value;
-                //     var email = document.forms["myForm"]["email"].value;
-                //     var phone = document.forms["myForm"]["phone"].value;
-                //     var comment = document.forms["myForm"]["comment"].value;
-                    
-                //     var nameRegex = /^[a-zA-Z0-9._-]{2,14}$/;
-                //     var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-                //     var phoneRegex = /^[0-9]{10}$/;
-                //     var commentRegex = /^[a-zA-Z0-9._-]{0,50}$/;
-        
-                //     if (!nameRegex.test(name)) {
-                //         alert("Invalid name format");
-                //         return false;
-                //     }
-                    
-                //     if (!emailRegex.test(email)) {
-                //         alert("Invalid email format");
-                //         return false;
-                //     }
-        
-                //     // if (!phoneRegex.test(phone)) {
-                //     //     alert("Invalid phone number format");
-                //     //     return false;
-                //     // }
-                    
-                //     return true;
-                // }
-            
+       
             function submitForm() {
                 var name = document.getElementById('guestName').value;
                 var email = document.getElementById('email').value;
-                var title = ocument.getElementById('messageTitle').value;
-                
+                var title = document.getElementById('messageTitle').value;                
                 var titleRegex = /^[a-zA-Z0-9._-]{2,14}$/;
                 var guestNameRegex = /^[a-zA-Z0-9._-]{2,14}$/;
                 var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
-                if (!nameRegex.test(name)) {
+                if (!guestNameRegex.test(name)) {
                     alert("Invalid name format");
                     return false;
                 }
@@ -69,15 +40,10 @@
                 if (!titleRegex.test(title)) {
                     alert("Invalid name format");
                     return false;
-                }
-
-
-                    submitFor()
-            }
-                
-            function submitFor() {
+                }            
 
             const formData = {
+                id: new Date().getTime(),
                 messageTitle: document.getElementById('messageTitle').value,
                 message: document.getElementById('message').value,
                 email: document.getElementById('email').value,
@@ -85,9 +51,11 @@
                 phone: document.getElementById('phone').value || null, // Phone is optional
             };
             
-            //API_GATEWAY_ENDPOINT = https://l44pf78ao4.execute-api.us-east-1.amazonaws.com/prod
+            //API_GATEWAY_ENDPOINT = https://l44pf78ao4.execute-api.us-east-1.amazonaws.com/prod/SaveContactMessage
+            //https://nwvkzvlnwg.execute-api.us-east-1.amazonaws.com/items
+            //https://nwvkzvlnwg.execute-api.us-east-1.amazonaws.com/items
 
-            fetch('https://l44pf78ao4.execute-api.us-east-1.amazonaws.com/prod/SaveContactMessage', {
+            fetch('https://nwvkzvlnwg.execute-api.us-east-1.amazonaws.com', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -106,7 +74,7 @@
             })
             .catch((error) => {
                 console.error('Error:', error);
-                document.getElementById('responseMessage').textContent = 'Error sending message.'+ error;
+                document.getElementById('responseMessage').textContent = 'Error sending message.';
                 document.getElementById('responseMessage').style.color = 'red';
             });
 
